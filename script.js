@@ -24,7 +24,7 @@ class Usuario {
     return console.log(agregarLibro);
   }
 
-  getBooks() {
+  getBooksNames() {
     console.log(`Mis libros son: ${this.libros}`);
   }
 }
@@ -34,7 +34,7 @@ const agregarMascota = new Usuario();
 const agregarLibro = new Usuario();
 
 datos1.getFullName();
-datos1.getBooks();
+datos1.getBooksNames();
 datos1.countMascotas();
 datos1.addBook();
 
