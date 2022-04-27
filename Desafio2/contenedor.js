@@ -1,61 +1,61 @@
 const fs = require("fs");
 
-class contenedor {
+class Contenedor {
   constructor(name) {
-    this.fileName = name;
+    this.file = name;
     this.countID = 0;
-    this.content = [];
+    this.contenido = [];
   }
 
   async write() {
     await fs.promises.writeFile(
-      this.fileName,
-      JSON.stringify(this.content, null, "")
+      this.file,
+      JSON.stringify(this.contenido, null, "")
     );
   }
 
   save(object) {
     this.countID++;
     object["id"] = this.countID;
-    this.content.push(object);
+    this.contenido.push(object);
     this.write();
-    return `Se agrego el id: ${this.countID}`;
+    return `El id del objeto añadido es ${this.countID}`;
   }
 
   async getAll() {
-    return this.content;
+    return this.contenido;
   }
 
   getById(id) {
-    let resultado;
-    if (this.content !== []) {
-      resultado = this.content.find((x) => x.id === id);
-      if (resultado === undefined) {
-        resultado = null;
+    let result;
+    if (this.contenido !== []) {
+      result = this.contenido.find((x) => x.id === id);
+      if (result === undefined) {
+        result = null;
       }
     } else {
-      resultado = "El archivo está vacío";
+      result = "No hay datos en este archivo";
     }
-    return resultado;
+    return result;
   }
 
   deleteById(id) {
-    let resultado;
-    if (this.content !== []) {
-      let newContent = this.content.filter((x) => x.id !== id);
-      this.content = newContent;
+    let result;
+    if (this.contenido !== []) {
+      let newContenido = this.contenido.filter((x) => x.id !== id);
+      this.contenido = newContenido;
       this.write();
-      resultado = "OK";
+      result = "OK";
     } else {
-      resultado = `El archivo está vacío`;
+      result = `No hay datos en este archivo`;
     }
-    return resultado;
+    return result;
   }
 
   async deleteAll() {
-    this.content = this.content.splice(0, this.content.length);
+    this.contenido = this.contenido.splice(0, this.contenido.length);
     this.write();
   }
 }
 
-module.exports = contenedor;
+module.exports = Contenedor;
