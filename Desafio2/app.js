@@ -1,7 +1,7 @@
 const Contenedor = require(`./contenedor`);
 
 const ejecutar = async function () {
-  let contenedorNuevo = new Contenedor("/Desafio2/productos.txt");
+  let contenedorNuevo = new Contenedor("./productos.txt");
   const resultado = contenedorNuevo.save({
     title: "Alfombra",
     price: 150,
@@ -31,5 +31,11 @@ const ejecutar = async function () {
   });
 
   console.log(contenedorNuevo.getById());
+  console.log(contenedorNuevo.getAll());
+  console.log(contenedorNuevo.getById(1));
+  console.log(contenedorNuevo.getById(2));
+  console.log(contenedorNuevo.getById(3));
+  //contenedorNuevo.deleteById(2);
+  //contenedorNuevo.deleteAll();
 };
 ejecutar();

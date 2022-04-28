@@ -7,6 +7,18 @@ class Contenedor {
     this.contenido = [];
   }
 
+  async read() {
+    try {
+      if (fs.existsSync(this.file)) {
+        const data = await fs.promises.readFile(this.file);
+        return JSON.parse(data);
+      } else {
+        return [];
+      }
+    } catch (error) {
+      console.log("Error al leer el archivo", error);
+    }
+  }
   async write() {
     await fs.promises.writeFile(
       this.file,
