@@ -1,10 +1,10 @@
 const express = require("express");
-const contenedor = require("./container");
+const Contenedor = require("./contenedor");
 const fs = require("fs");
 const app = express();
 const PORT = 8080;
 
-const products = new contenedor("./productos.txt");
+const products = new Contenedor("./productos.txt");
 products.init();
 
 app.listen(process.env.PORT || PORT, () => {
@@ -20,7 +20,7 @@ const save = products.save({
   thumbail:
     "https://http2.mlstatic.com/D_NQ_NP_931157-MLA31308028051_072019-O.jpg",
   id: 6,
-}); //modificar siempre para agregar nuevos productos
+});
 console.log(`Nuevo item con id ${save}`);
 
 app.get("/", (request, response) => {
