@@ -1,0 +1,344 @@
+font-face {
+  font-family: TitilliumWebItalic;
+  src: url(./fonts/TitilliumWeb/TitilliumWeb-Italic.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  font-family: "TitilliumWebItalic";
+  /* font-family: "Jost", sans-serif;
+    font-family: "Rampart One", cursive; */
+}
+
+:root {
+  --primaryColor: #000;
+  --secundaryColor: #ffff;
+  --textColor: rgb(3, 182, 0);
+  --academyColor: #f9630b;
+  --fontText: roboto;
+}
+
+/* ANIMACION NAV */
+.chargeBar {
+  background-color: var(--secundaryColor);
+  width: 100%;
+  height: 3px;
+  animation-name: chargeBar;
+  animation-duration: 1.5s;
+}
+
+/* LINEA TEMPORAL DE LA ANIMACION */
+@keyframes chargeBar {
+  0% {
+    width: 10%;
+    background-color: var(--academyColor);
+  }
+  15% {
+    width: 15%;
+    background-color: var(--academyColor);
+  }
+  25% {
+    width: 25%;
+    background-color: var(--academyColor);
+  }
+  35% {
+    width: 15%;
+    background-color: var(--academyColor);
+  }
+  50% {
+    width: 50%;
+    background-color: var(--academyColor);
+  }
+  75% {
+    width: 75%;
+    background-color: var(--academyColor);
+  }
+  100% {
+    width: 100%;
+    background-color: var(--academyColor);
+  }
+}
+body {
+  background-color: black;
+}
+p {
+  font-size: 25px;
+}
+nav,
+footer {
+  height: 100px;
+  background-color: goldenrod;
+}
+.mainImage {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  top: -20px;
+  background: transparent;
+}
+
+.info {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 40px;
+  border-bottom: 1px solid black;
+}
+.infoMainPage {
+  font-size: 30px;
+  background-color: var(--secundaryColor);
+  color: var(--primaryColor);
+  padding: 0 20px;
+  text-align: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--fontText);
+}
+.infoMainPage_text {
+  width: 80%;
+}
+
+.infoMainPage h2 {
+  color: violet;
+}
+.infoMainPage h3 {
+  color: var(--textColor);
+}
+#galleryMainPage {
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(500px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.cardInfoMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px;
+  width: 600px;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid black;
+  transition: 0.5s;
+  background: black;
+  box-shadow: gray;
+}
+.cardInfoMain img {
+  width: 100%;
+}
+.cardInfoMain button,
+.cardInfoMain button a {
+  margin: 30px;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background-color: var(--academyColor);
+  color: white;
+  border-radius: 8px;
+}
+.cardInfoMain:hover {
+  transform: scale(1.1);
+  overflow: hidden;
+  z-index: 1;
+}
+.cardText {
+  color: var(--secundaryColor);
+  font-size: 20px;
+  margin-top: 10px;
+}
+.galleryMain_picture {
+  width: 350px;
+  height: 400px;
+}
+/* CONTACT PAGE */
+
+.contactPage {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: white;
+  background-size: cover;
+}
+
+.contactPage .contactContent {
+  max-width: 800px;
+  text-align: center;
+}
+.contactPage .contactContent h2 {
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--primaryColor);
+  margin-top: 50px;
+}
+
+.contactPage .contactContent p {
+  font-weight: 300;
+  color: var(--primaryColor);
+}
+.contactContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.contactContainer .contactInfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.contactContainer .contactInfo .box {
+  position: relative;
+  padding: 20px 0;
+  display: flex;
+}
+.contactContainer .contactInfo .box .contactIconBox {
+  min-height: 60px;
+  height: 60px;
+  background: var(--secundaryColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 22px;
+}
+.contactIconBox img {
+  height: 50px;
+}
+.contactContainer .contactInfo .box .contactIconBox .contactTextBox {
+  display: flex;
+  margin-left: 20px;
+  font-size: 16px;
+  color: var(--secundaryColor);
+  flex-direction: column;
+  font-weight: 300;
+}
+.contactContainer .contactInfo .box .contactIconBox .contactTextBox h3 {
+  font-weight: 500;
+  color: antiquewhite;
+}
+
+.contactForm {
+  padding: 40px;
+  background: var(--secundaryColor);
+}
+.contactForm form {
+  flex-direction: column;
+}
+.contactForm h2 {
+  font-size: 30px;
+  color: #333;
+  font-weight: 500;
+}
+
+.contactForm .inputBox {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.contactForm .inputBox input,
+.contactForm .inputBox textarea {
+  width: 100%;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 2px solid #333;
+  outline: none;
+  resize: none;
+}
+
+.contactForm .inputBox span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  color: #666;
+}
+
+.contactForm .inputBox input:focus ~ span,
+.contactForm .inputBox input:valid ~ span,
+.contactForm .inputBox textarea:focus ~ span,
+.contactForm .inputBox textarea:valid ~ span {
+  color: red;
+  font-size: 12px;
+  transform: translate(-20px);
+}
+.contactForm .inputBox input[type="submit"] {
+  width: 100%;
+  background: #00bcd4;
+  color: var(--secundaryColor);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+}
+
+/*  MEDIA QUERIES */
+@media screen and (max-width: 1200px) {
+  .mainImage {
+    height: 700px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .mainImage {
+    height: 700px;
+  }
+  .contactPage {
+    padding: 50px;
+  }
+  .contactContainer {
+    flex-direction: column;
+  }
+  .contactContainer .contactInfo {
+    margin-bottom: 40px;
+  }
+  .contactContainer .contactInfo,
+  .contactForm {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mainImage {
+    height: 300px;
+  }
+  .infoMainPage {
+    font-size: 20px;
+  }
+
+  .cardInfoMain {
+    width: 320px;
+  }
+  .galleryMain_picture {
+    width: 320px;
+    height: 300px;
+  }
+}
+
+/* banderas */
+.bandera {
+  max-width: 25px;
+  max-height: 25px;
+  background-color: #000;
+  margin: 0px 5px 0 0px;
+  border: none;
+}
