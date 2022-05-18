@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">TITLE</th>
+      <th scope="col">PRICE</th>
+      <th scope="col">THUMBAIL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% data.forEach(productos =>{ %>
+    <tr>
+      <th scope="row"><%= productos.id %></th>
+      <td><%= productos.title %></td>
+      <td>$<%= productos.price %></td>
+      <td>
+        <img
+          style="width: 3rem; height: auto"
+          src="/public/img/<%= product.imagen %>"
+          alt=""
+        />
+      </td>
+    </tr>
+    <% })%>
+  </tbody>
+</table>

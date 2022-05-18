@@ -1,0 +1,25 @@
+extends index 
+
+section(class="contactPage")
+    div(class="contactContent")
+      h2= PRODUCTOS
+      p="AQUI PUEDES AGREGAR LOS PRODUCTOS A LA API"
+   
+    div(class="contactContainter")
+      div(class="contactInfo")
+        div(class="box")
+      div(class="contactForm")
+    form(action="/api/productos" method="post")
+      h2="DATOS PARA AGREGAR"
+        p="Tittle"
+        input(type="text"  required="required" name="Tittle")
+      
+        p="Price" 
+        input(type="number" required="required" name="Price")
+      
+        p="Thumbnail"
+        input(type="file" name="thumbnail")
+             
+        input(type="submit" name="" value="Agregar producto")
+      
+      

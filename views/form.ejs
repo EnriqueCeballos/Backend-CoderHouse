@@ -1,0 +1,42 @@
+<section class="contactPage">
+    <div class="contactContent">
+      <h2>PRODUCTOS</h2>
+      <p>AQUI PUEDES AGREGAR LOS PRODUCTOS A LA API</p>
+    </div>
+    <div class="contactContainter">
+      <div class="contactInfo">
+        <div class="box">
+      <div class="contactForm">
+    <form action="/api/productos" method="post">
+      <h2>DATOS PARA AGREGAR</h2>
+         Tittle
+        <input type="text"  required="required"name="Tittle">
+      
+        Price 
+        <input type="number" required="required" name="Price">
+      
+        Thumbnail
+        <input type="file" name="thumbnail"></input>
+             
+        <input type="submit" name="" value="Agregar producto">
+      
+      
+    </form>
+  </div>
+  
+    </div>
+  </section>
+  <!-- <main class="container-fluid d-flex flex-column align-items-center p-5">
+    <h1 class="mb-5">Carga de productos</h1>
+
+    <form action="/api/productos" method="post" enctype="multipart/form-data">
+      Title:
+      <input class="form-control" type="text" name="title" /><br /><br />
+      Price:
+      <input class="form-control" type="number" name="price" /><br /><br />
+      Thumbnail:
+      <input class="form-control" type="file" name="thumbnail" /><br /><br />
+
+      <button type="submit" class="btn btn-primary">Agregar producto</button>
+    </form>
+  </main> -->
