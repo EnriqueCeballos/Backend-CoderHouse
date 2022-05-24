@@ -1,15 +1,8 @@
-font-face {
-  font-family: TitilliumWebItalic;
-  src: url(./fonts/TitilliumWeb/TitilliumWeb-Italic.ttf);
-}
-
 * {
   margin: 0;
   padding: 0;
   box-shadow: none;
   font-family: "TitilliumWebItalic";
-  /* font-family: "Jost", sans-serif;
-    font-family: "Rampart One", cursive; */
 }
 
 :root {
@@ -20,46 +13,6 @@ font-face {
   --fontText: roboto;
 }
 
-/* ANIMACION NAV */
-.chargeBar {
-  background-color: var(--secundaryColor);
-  width: 100%;
-  height: 3px;
-  animation-name: chargeBar;
-  animation-duration: 1.5s;
-}
-
-/* LINEA TEMPORAL DE LA ANIMACION */
-@keyframes chargeBar {
-  0% {
-    width: 10%;
-    background-color: var(--academyColor);
-  }
-  15% {
-    width: 15%;
-    background-color: var(--academyColor);
-  }
-  25% {
-    width: 25%;
-    background-color: var(--academyColor);
-  }
-  35% {
-    width: 15%;
-    background-color: var(--academyColor);
-  }
-  50% {
-    width: 50%;
-    background-color: var(--academyColor);
-  }
-  75% {
-    width: 75%;
-    background-color: var(--academyColor);
-  }
-  100% {
-    width: 100%;
-    background-color: var(--academyColor);
-  }
-}
 body {
   background-color: black;
 }

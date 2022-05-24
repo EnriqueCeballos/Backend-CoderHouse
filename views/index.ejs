@@ -11,9 +11,10 @@
       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
         <button
@@ -45,7 +46,7 @@
         </div>
       </div>
     </nav>
-    <%- include(`/views/form.ejs)%> <%- include(`/views/productos.ejs`)%> <%-
-    include(`/views/table.ejs`)%> <%- include(`/views/layouts/historial.ejs`)%>
+    <div><%- include('./partials/form.ejs') %></div>
+    <div><%- include('./partials/historial.ejs') %></div>
   </body>
 </html>
