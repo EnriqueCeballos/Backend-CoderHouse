@@ -22,7 +22,7 @@ class Container {
       this.write(mostrarArray, file);
       console.log("Actualizando productoos");
     } else {
-      console.log("productoo no encontrado");
+      console.log("Producto no encontrado");
     }
   }
 
@@ -37,7 +37,8 @@ class Container {
   read(file) {
     let mostrarArray = [];
     try {
-      mostrarArray = fs.readFileSync(file, "utf8");
+      // if (!filepath || filepath[0] == "undefined") return;
+      mostrarArray = this.read(file);
       mostrarArray.length > 0
         ? (mostrarArray = JSON.parse(mostrarArray))
         : (mostrarArray = []);

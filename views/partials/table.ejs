@@ -1,26 +1,32 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">TITLE</th>
-      <th scope="col">PRICE</th>
-      <th scope="col">THUMBAIL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% data.forEach(productos =>{ %>
-    <tr>
-      <th scope="row"><%= productos.id %></th>
-      <td><%= productos.title %></td>
-      <td>$<%= productos.price %></td>
-      <td>
-        <img
-          style="width: 3rem; height: auto"
-          src="/public/img/<%= productos.imagen %>"
-          alt=""
-        />
-      </td>
-    </tr>
-    <% })%>
-  </tbody>
-</table>
+<% if(productos.length>0) { %>
+<div class="tableContainer">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <% productos.forEach(producto =>{ %>
+    <tbody>
+      <tr>
+        <td><%= producto.title %></td>
+        <td><%= producto.price %></td>
+        <td>
+          <img
+            src="<%= producto.thumbnail %>"
+            alt="<%= producto.title %>"
+            class="imgProd"
+          />
+        </td>
+      </tr>
+    </tbody>
+    <% }) %>
+  </table>
+</div>
+<% } %> <% if(productos.length<1) { %>
+<div class="noProdsMessage">
+  <p>There are no products</p>
+</div>
+<%} %>

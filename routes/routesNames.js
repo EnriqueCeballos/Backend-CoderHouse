@@ -25,42 +25,42 @@ router.post("/", (req, res) => {
   const body = req.body;
   const photo = req.file;
   console.log(photo);
-  body.thumbnail = "/public/img/";
+  body.thumbnail = "/public/img/" + req.file;
   containerProducts.save(body, file);
   res.redirect("/api/productos");
 });
-// const verificarProducto = function (req, res, next) {
-//   const error = "Producto no encontrado";
-//   if (req.body.id > 0) {
-//     next(error);
-//   }
-//   next();
-// };
+const verificarProducto = function (req, res, next) {
+  const error = "Producto no encontrado";
+  if (req.body.id > 0) {
+    next(error);
+  }
+  next();
+};
 
-// const errorMiddleware = function (err, req, res, next) {
-//   if (err) {
-//     return res.status(500).json({ error: err });
-//   }
-//   next();
-// };
+const errorMiddleware = function (err, req, res, next) {
+  if (err) {
+    return res.status(500).json({ error: err });
+  }
+  next();
+};
 
-// router.post("/productos", errorMiddleware, verificarProducto, (req, res) => {
-//   const producto = req.body;
-//   if (producto.length > 0) {
-//     productos.push(producto);
-//     res.redirect("/productos");
-//   }
-// });
+router.post("/productos", errorMiddleware, verificarProducto, (req, res) => {
+  const producto = req.body;
+  if (producto.length > 0) {
+    productos.push(producto);
+    res.redirect("/productos");
+  }
+});
 
-// router.put("/productos/:id", (req, res) => {
-//   let obj = req.body;
-//   let id = Number(req.params.id);
-//   return res.json(productos.update(id, obj));
-// });
+router.put("/productos/:id", (req, res) => {
+  let obj = req.body;
+  let id = Number(req.params.id);
+  return res.json(productos.update(id, obj));
+});
 
-// router.delete("/api/productos/:id", (req, res) => {
-//   let id = Number(req.params.id);
-//   return res.json(productos.deleteById(id));
-// });
+router.delete("/api/productos/:id", (req, res) => {
+  let id = Number(req.params.id);
+  return res.json(productos.deleteById(id));
+});
 
 module.exports = router;

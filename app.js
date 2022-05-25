@@ -1,39 +1,59 @@
 const express = require("express");
 const app = express();
-const routesNames = require(`./routes/routesNames`);
-const path = require("path");
-const fs = require(`fs`);
-const morgan = require("morgan");
+const { Server: ioServer } = require("socket.io");
+const http = require("http");
+const Container = require("./container");
+const Messages = require("./messages");
 
-app.use(morgan("dev"));
+const archivoNuevo = new Container();
+const mensajesLlegados = new Messages("mensajes.txt");
+
+const httpServer = http.createServer(app);
+const io = new ioServer(httpServer);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
-app.set("views", path.join(__dirname, "views"));
+
+app.set("views", "./views");
 app.set("view engine", "ejs");
 
-app.use("/api/productos", routesNames);
-
-app.get("/", (req, res) => {
-  res.redirect("/api/productos");
+app.get("/", (req, resp) => {
+  const productos = archivoNuevo.getAll();
+  resp.render("index", { productos: productos });
 });
 
-// function mostrarProductos() {
-//   const productos = [];
-//   console("Iniciando aplicacion");
-// }
-// app.get(`/`, (req, res) => {
-//   res.render(`index`, {
-//     allProducts: mostrarProductos(),
-//     listaProductos: true,
-//   });
-// });
+app.post("/api/productos", (req, res) => {
+  const producto = req.body;
+  const productoAgregado = archivoNuevo.save(producto);
+});
+
+let mensajes = [];
+const productos = [];
+
+io.on("connection", (socket) => {
+  console.log("cliente conectado");
+  socket.on("newProduct", (data) => {
+    productos.push(data);
+    io.sockets.emit("productos", productos);
+    console.log(productos);
+  });
+  io.sockets.emit("messages", mensajes);
+  socket.on("newMessage", (message) => {
+    mensajes.push(message);
+    io.sockets.emit(`messages`, mensajes); //MENSAJE GLOBAL
+    console.log(`Web socket en funcionamiento`, socket.id);
+  });
+
+  // ;socket.on("newMessage", async (mensaje) => {
+  // await mensajesLlegados.save(mensaje);
+  // mensajes = await mensajesLlegados.getAll();
+  // io.sockets.emit("messages", mensajes);
+});
 
 const PORT = 8080;
+const server = httpServer.listen(PORT, () => {
+  console.log(`Your app is listening on port ${PORT}`);
+});
 
-try {
-  app.listen(PORT);
-  console.log(`Servidor escuchando el puerto ${PORT}`);
-} catch (error) {
-  console.log("Error al iniciar la aplicacion", error);
-}
+server.on("error", (error) => console.log(`Error en el servidor ${error}`));
