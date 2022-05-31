@@ -3,24 +3,22 @@ const fs = require("fs");
 class Container {
   constructor() {}
 
-  save(productoo, file) {
-    console.log("Guardando...", productoo);
+  save(producto, file) {
+    console.log("Guardando...", producto);
     let nextId = this.getNextId(file);
-    productoo.id = nextId;
+    producto.id = nextId;
     const mostrarArray = this.read(file);
-    mostrarArray.push(productoo);
+    mostrarArray.push(producto);
     this.write(mostrarArray, file);
-
-    return `Se ha añadido el siguiente productoo: ${productoo}`;
   }
 
-  update(id, productoo, file) {
+  update(id, producto, file) {
     const mostrarArray = this.read(file);
-    let index = mostrarArray.findIndex((productoo) => productoo.id == id);
+    let index = mostrarArray.findIndex((producto) => producto.id == id);
     if (index >= 0) {
-      mostrarArray[index] = productoo;
+      mostrarArray[index] = producto;
       this.write(mostrarArray, file);
-      console.log("Actualizando productoos");
+      console.log("Actualizando productos");
     } else {
       console.log("Producto no encontrado");
     }
@@ -34,11 +32,12 @@ class Container {
     }
     return lastId + 1;
   }
+
   read(file) {
     let mostrarArray = [];
     try {
-      // if (!filepath || filepath[0] == "undefined") return;
-      mostrarArray = this.read(file);
+      mostrarArray = fs.readFileSync(file, "utf8");
+      //console.log('read mostrarArray', mostrarArray);
       mostrarArray.length > 0
         ? (mostrarArray = JSON.parse(mostrarArray))
         : (mostrarArray = []);

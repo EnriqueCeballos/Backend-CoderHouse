@@ -62,10 +62,9 @@ footer {
 .infoMainPage h3 {
   color: var(--textColor);
 }
-#galleryMainPage {
+.historialPage {
   display: grid;
-  grid-template-rows: repeat(auto-fill, minmax(500px, 1fr));
-  gap: 40px;
+  grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
   justify-content: center;
   align-items: center;
 }
@@ -73,21 +72,22 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 50px;
-  width: 600px;
+  margin: 20px;
+  width: 200px;
   flex-direction: column;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid black;
   transition: 0.5s;
-  background: black;
+  background: white;
   box-shadow: gray;
 }
 .cardInfoMain img {
   width: 100%;
 }
 .cardInfoMain button,
-.cardInfoMain button a {
+.cardInfoMain button a,
+#enviar {
   margin: 30px;
   padding: 10px;
   font-size: 20px;
@@ -205,7 +205,7 @@ footer {
 }
 
 .contactForm .inputBox input,
-.contactForm .inputBox textarea {
+.inputBox textarea {
   width: 100%;
   padding: 5px 0;
   font-size: 16px;
@@ -229,8 +229,8 @@ footer {
 
 .contactForm .inputBox input:focus ~ span,
 .contactForm .inputBox input:valid ~ span,
-.contactForm .inputBox textarea:focus ~ span,
-.contactForm .inputBox textarea:valid ~ span {
+.inputBox textarea:focus ~ span,
+.inputBox textarea:valid ~ span {
   color: red;
   font-size: 12px;
   transform: translate(-20px);
@@ -245,6 +245,11 @@ footer {
   font-size: 18px;
 }
 
+#messages {
+  height: 300px;
+  width: 300px;
+  background-color: wheat;
+}
 /*  MEDIA QUERIES */
 @media screen and (max-width: 1200px) {
   .mainImage {
