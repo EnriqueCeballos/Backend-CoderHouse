@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 
 class Container {
   constructor() {}
@@ -50,7 +51,7 @@ class Container {
   write(mostrarArray, file) {
     let json = JSON.stringify(mostrarArray);
     try {
-      fs.writeFileSync(file, json);
+      fs.writeFileSync(file.path[0], "utf8", json);
     } catch (err) {
       console.log("Error en la escritura", err);
     }

@@ -1,8 +1,10 @@
 const { Router } = require(`express`);
 const router = Router();
-const Container = require("../containerProductsApi");
-const containerProducts = new Container("/data/productos.json");
 
+const Container = require("../containerProductsApi");
+const containerProducts = new Container("./data/productos.json");
+
+const admin = true;
 function permissionAdminAndClient(req, res, next) {
   if (!admin) {
     res.send("You do not have access to this page");
@@ -13,10 +15,10 @@ function permissionAdminAndClient(req, res, next) {
 
 router.get("/", async (req, res) => {
   const productos = await containerProducts.getAll();
-  res.render(`index.ejs`, { productos });
+  res.render("index", { productos });
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/api/:id", async (req, res) => {
   const { id } = req.params;
   const producto = await containerProducts.getById(id);
   res.json({ producto });
@@ -24,13 +26,13 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", permissionAdminAndClient, async (req, res) => {
   const body = req.body;
-  const producto = await containerProducts.write(body);
+  const producto = containerProducts.write(body);
   res.json(producto);
 });
 
 router.put("/api/productos/:id", permissionAdminAndClient, async (req, res) => {
   const obj = req.body;
-  const producto = await containerProducts.update(obj);
+  const producto = containerProducts.update(obj);
   res.json(producto);
 });
 
