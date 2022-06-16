@@ -1,8 +1,8 @@
 const { Router } = require(`express`);
 const router = Router();
 
-const Container = require("../containerProductsApi");
-const containerProducts = new Container("./data/productos.json");
+const Container = require("../contentApi");
+const content = new contenedorProd(options.mariaDB, "productos");
 
 const admin = true;
 function permissionAdminAndClient(req, res, next) {
@@ -14,25 +14,25 @@ function permissionAdminAndClient(req, res, next) {
 }
 
 router.get("/", async (req, res) => {
-  const productos = await containerProducts.getAll();
+  const productos = await content.getAll();
   res.render("index", { productos });
 });
 
 router.get("/api/:id", async (req, res) => {
   const { id } = req.params;
-  const producto = await containerProducts.getById(id);
+  const producto = await content.getById(id);
   res.json({ producto });
 });
 
 router.post("/", permissionAdminAndClient, async (req, res) => {
   const body = req.body;
-  const producto = containerProducts.write(body);
+  const producto = content.write(body);
   res.json(producto);
 });
 
 router.put("/api/productos/:id", permissionAdminAndClient, async (req, res) => {
   const obj = req.body;
-  const producto = containerProducts.update(obj);
+  const producto = content.update(obj);
   res.json(producto);
 });
 
@@ -41,7 +41,7 @@ router.delete(
   permissionAdminAndClient,
   async (req, res) => {
     const { id } = Number(req.params);
-    const producto = await containerProducts.deleteById(id);
+    const producto = await content.deleteById(id);
     res.json(producto);
   }
 );

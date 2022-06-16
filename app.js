@@ -32,7 +32,6 @@ app.get("/", (req, res) => {
         res.render('index.ejs',{productos})
     }
 
-  res.redirect("/api/productos");
 });
 
 
