@@ -6,9 +6,11 @@ const morgan = require("morgan");
 const path = require("path");
 const routesProductos = require("./routes/routesProductos");
 const routesCarrito = require("./routes/routesCarrito");
-const PORT = 8080;
+
 const { options } = "./database/configDB";
 const knex = "knex";
+const content = new contenedorProd(options.mariaDB,'productos');
+const chat = new contenedorChat(options.sqlite,'usuarios')
 
 // SERVIDOR
 const httpServer = http.createServer(app);
@@ -22,10 +24,17 @@ app.use(morgan("dev"));
 app.set("views", path.join(__dirname, "/public/views"));
 app.set("view engine", "ejs");
 app.get("/", (req, res) => {
+  let productos = await content.getAll();
+    if (productos != null){
+        res.render('index.ejs',{productos})
+    } else {
+        productos = [];
+        res.render('index.ejs',{productos})
+    }
+
   res.redirect("/api/productos");
 });
-app.use("/api/productos", routesProductos);
-app.use("/api/carrito", routesCarrito);
+
 
 // KNEX
 
@@ -50,16 +59,22 @@ const mensajes = [
 io.on("connection", (socket) => {
   console.log("Nuevo cliente conectado ", socket.id);
 
-  socket.on("setName", (name) => {
-    console.log(name);
-    socket.emit("usuarioConectado", name);
-    socket.broadcast.emit("usuarioConectado", name);
-    socket.on("new-message", (data) => {
-      io.sockets.emit("messages", mensajes);
-    });
-  });
-});
+  const mensajes = await chat.getAll();
+  socket.emit('messages', mensajes)
 
+  socket.on('newMessage', async(message)=>{
+      await chat.save(message);
+      const mensajes = await chat.getAll();
+      io.sockets.emit('newMessages', mensajes)
+  })
+  socket.on('product', async(data)=>{
+      await content.save(data);
+      const products = await content.getAll();
+      io.sockets.emit('newProduct', products)
+  })
+  
+});
+const PORT = 8080;
 function onInit() {
   console.log("Iniciando App...");
 }
