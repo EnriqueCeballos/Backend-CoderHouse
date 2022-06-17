@@ -1,15 +1,15 @@
-import { options } from "./configDB.js";
+import { db } from "./configDB.js";
 import knex from "knex";
 
 try {
-  knex(options).schema.dropTableIfExists("Productos");
-  knex(options)
+  knex(db).schema.dropTableIfExists("Productos");
+  knex(db)
     .schema.createTable("Productos", (table) => {
       table.increments("id").primary().unique();
       table.varchar("title", 60).notNullable();
       table.float("price").notNullable();
       table.varchar("thumbnail", 120).notNullable();
-      knex(options)("Productos").insert(nuevos);
+      knex(db)("Productos").insert(nuevos);
     })
     .then(() => {
       console.log("Producto agregado con exito");

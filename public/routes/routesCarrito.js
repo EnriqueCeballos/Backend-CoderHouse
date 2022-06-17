@@ -1,7 +1,7 @@
 const { Router } = require(`express`);
 const router = Router();
-const Container = require("../containerProductsApi");
-const CarritosApiClass = require("../carritoApiClass");
+const Container = require("../../containerProductsApi");
+const CarritosApiClass = require("../../carritoApiClass");
 
 const productoApi = new Container("/data/productos.json");
 const carritoApi = new CarritosApiClass("/data/carritos.json");

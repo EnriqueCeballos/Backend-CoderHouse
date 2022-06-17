@@ -1,4 +1,4 @@
-const options = {
+const db = {
   mariaDB: {
     client: "mysql",
     connection: {
@@ -17,4 +17,4 @@ const options = {
   },
 };
 
-module.exports = { options };
+module.exports = { db };

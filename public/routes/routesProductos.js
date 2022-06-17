@@ -1,8 +1,10 @@
 const { Router } = require(`express`);
 const router = Router();
+const { db } = "./database/configDB";
 
-const Container = require("../contentApi");
-const content = new contenedorProd(options.mariaDB, "productos");
+const contenedorProd = require("../../containerProductsApi");
+// const content = new contenedorProd(db.mariaDB, "productos");
+// const content = new contenedorProd(db.mariaDB, "productos");
 
 const admin = true;
 function permissionAdminAndClient(req, res, next) {
