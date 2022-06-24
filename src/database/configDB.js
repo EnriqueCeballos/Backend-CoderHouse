@@ -1,13 +1,14 @@
 const db = {
-  mariaDB: {
+  mysql: {
     client: "mysql",
     connection: {
-      host: "127.0.0.1",
+      host: "localhost",
       user: "root",
-      database: "PRIMERDB",
+      database: "ecommerce",
     },
+    pool: { min: 0, max: 10 },
   },
-  pool: { min: 0, max: 10 },
+
   sqlite: {
     client: "sqlite3",
     connection: {
@@ -17,4 +18,4 @@ const db = {
   },
 };
 
-module.exports = { db };
+exports.db = db;

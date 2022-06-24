@@ -31,6 +31,9 @@ footer {
   top: -20px;
   background: transparent;
 }
+h3 {
+  color: white;
+}
 
 .info {
   margin-top: 50px;

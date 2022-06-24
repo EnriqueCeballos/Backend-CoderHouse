@@ -1,9 +1,9 @@
 const { Router } = require(`express`);
 const router = Router();
-const { db } = "./database/configDB";
+const { db } = require("../../database/configDB");
 
 const contenedorProd = require("../../containerProductsApi");
-// const content = new contenedorProd(db.mariaDB, "productos");
+const content = new contenedorProd(db.mariaDB, "productos");
 // const content = new contenedorProd(db.mariaDB, "productos");
 
 const admin = true;

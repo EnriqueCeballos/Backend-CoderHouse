@@ -1,30 +1,32 @@
 const express = require("express");
 const app = express();
 const { Server: ioServer } = require("socket.io");
-const http = "http";
+const http = require("http");
 
 const morgan = require("morgan");
 const path = require("path");
 const routesProductos = require("./public/routes/routesProductos");
 const routesCarrito = require("./public/routes/routesCarrito");
 
-const { db } = "./database/configDB";
-const knex = "knex";
+const { db } = require("./database/configDB");
+const knex = require("knex");
 const contenedorProd = require("./containerProductsApi");
+const contenedorChat = require("./public/containerMessages");
 
-// const content = new contenedorProd(db.mariaDB, "productos");
+const content = new contenedorProd(db.mariaDB, "productos");
 // console.log(options.mariaDB);
-// const chat = new contenedorProd(db.sqlite, "usuarios");
+const chat = new contenedorChat(db._sqlite, "usuarios");
 
 // SERVIDOR
 const httpServer = http.createServer(app);
-const io = new ioServer(http);
+const io = new ioServer(httpServer);
 
 //  MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(morgan("dev"));
+
 app.set("views", path.join(__dirname, "/public/views"));
 app.set("view engine", "ejs");
 app.get("/", (req, res) => {
@@ -42,8 +44,8 @@ app.use("/api/carrito", routesCarrito);
 // KNEX
 
 try {
-  knex(db).schema.dropTableIfExists("mensajes");
-  knex(db).schema.createTable("mensajes", (table) => {
+  knex(db.mariaDB).schema.dropTableIfExists("mensajes");
+  knex(db.mariaDB).schema.createTable("mensajes", (table) => {
     table.increments("id").primary().unique();
     table.varchar("text", 60).notNullable();
     table.varchar("author", 45).notNullable();
@@ -63,12 +65,12 @@ const mensajes = [
 io.on("connection", (socket) => {
   console.log("Nuevo cliente conectado ", socket.id);
 
-  const mensajes = chat.getAll();
+  const mensajes = chat.getAllMessages();
   socket.emit("messages", mensajes);
 
   socket.on("newMessage", async (message) => {
     await chat.save(message);
-    const mensajes = chat.getAll();
+    const mensajes = chat.getAllMessages();
     io.sockets.emit("newMessages", mensajes);
   });
   socket.on("product", async (data) => {
@@ -78,9 +80,7 @@ io.on("connection", (socket) => {
   });
 });
 const PORT = 8080;
-function onInit() {
-  console.log("Iniciando App...");
-}
+function onInit() {}
 try {
   httpServer.listen(PORT, () => {
     console.log(`Your app is listening on port ${PORT}`);

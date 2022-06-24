@@ -1,8 +1,10 @@
-const knex = require("knex");
+// const knex = require("knex");
+const { db } = require("../database/configDB");
 
 class contenedorChat {
-  constructor(db, table) {
-    this.knex = knex(db);
+  constructor(table) {
+    this.knex = require("knex");
+    this.db = db.mariaDB;
     this.table = table;
   }
   async save(newData) {
@@ -41,9 +43,10 @@ class contenedorChat {
       console.log("Error al guardar el articulo", error);
     }
   }
-  async getAll() {
+  async getAllMessages() {
     try {
       const exist = await this.knex.schema.hasTable(this.table);
+
       if (exist) {
         const res = JSON.stringify(
           await this.knex.from(this.table).select("*")
