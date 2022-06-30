@@ -1,67 +1,74 @@
-const socket = io();
+const socket = io()
 
-const messagesDiv = document.getElementById("messages");
-const btnEnviar = document.getElementById("enviar");
-const inputNombre = document.getElementById("nombre");
-const inputTexto = document.getElementById("texto");
-const usuarioNuevo = `usuario-${Math.floor(Math.random() * 100)}`;
+const inputTitle = document.getElementById("title")
+const inputPrice = document.getElementById("price")
+const inputPhoto = document.getElementById("photo")
+const button = document.getElementById("button")
 
-const mensajes = [];
-socket.emit("set-name", usuarioNuevo);
-socket.on("usuario-connected", (name) => {
-  console.log("usuario-connected", name);
-});
+const tablaProducts = document.getElementById("tablaP")
 
-btnEnviar.addEventListener("click", () => {
-  const texto = inputTexto.value;
+const inputMail = document.getElementById("mail")
+const inputMensaje = document.getElementById("mensaje")
+const mostrarMensajes = document.getElementById("nuevosMensajes")
+const buttonMensajes = document.getElementById("buttonMensajes")
 
-  inputTexto.value = "";
-  socket.emit("new-message", {
-    usuario: usuarioNuevo,
-    texto: texto,
-    date: getNow(),
-  });
-  console.log(texto);
+button.addEventListener('click', (e) => {
+    const titulo = inputTitle.value
+    const precio = inputPrice.value
+    const foto = inputPhoto.value
+    
+    const producto = {
+        titulo: titulo,
+        precio: precio,
+        foto: foto
+    }
+    console.log(producto)
+    socket.emit("newProducto", producto)
+})
 
-  socket.on("messages", (messages) => {
-    console.log("mensaje recibido");
-    console.log(messages);
-    messagesDiv.innerHTML = messages
-      .map((message) => {
-        if (message.user === currentUser) {
-          return `<div class="notification is-danger is-light"
-             style="text-align: justify; margin-left: 35px;     padding: 15px;
-             border-radius: 20px;">
-                 <div>
-                 <p>${messages.texto}</p>
-                 </div>
-                 <div
-                     style="text-align: end; font-style: italic; font-weight: 400"
-                     class="has-text-dark">
-                 ${messages.usuario} - ${messages.date}
-                 </div>
-         </div>`;
-        } else {
-          return `<div
-     class="notification is-primary is-light"
-     style=" text-align: justify; margin-rigth:35px;     padding: 15px;
-     border-radius: 20px;">
-         <div>
-         <p>${messages.texto}</p>
-         </div>
-         <div
-         style="text-align: end; font-style: italic; font-weight: 400"
-         class="has-text-dark"
-         >
-         ${messages.usuario} - ${messages.date}
-         </div>
-     </div>`;
+buttonMensajes.addEventListener('click',(e) => {
+
+    if(inputMensaje.value.length > 0){
+        let date = new Date()
+        const fecha = [date.getDay(),date.getMonth(),date.getFullYear(),date.getHours(),date.getMinutes(),date.getSeconds()]
+        const mail = inputMail.value
+        const texto = inputMensaje.value
+        const mensaje = {
+            mail: mail,
+            texto: texto,
+            fecha:fecha
         }
-      })
-      .join("");
-  });
-});
-getNow = () => {
-  const now = new Date();
-  return `${now.getHours()}:${now.getMinutes()}`;
-};
+        console.log(fecha)
+        console.log(mensaje)
+        socket.emit("newMessage",mensaje)  
+    }   
+})
+
+
+socket.on('productos', (productos) => {
+    tablaProducts.innerHTML = productos.map(p => {
+        return(
+            `   
+                <tr class="filas">
+                    <th class="columnas">${p.titulo}</th>
+                    <th class="columnas">${p.precio}</th>
+                    <th class="columnas">${p.foto}</th>
+                </tr>
+            `
+    )
+    }).join(" ")
+})
+
+socket.on('mensajes', (mensajes) => {
+    mostrarMensajes.innerHTML = mensajes.map(m => {
+        return (
+            `
+                <div class="fondoMensaje">
+                    <strong class="mail">${m.mail}</strong>
+                    <strong class="fecha">${m.fecha.join("/")}</strong>
+                    <em class="mensaje">${m.texto}</em>
+                </div>
+            `
+        )
+    })
+})

@@ -1,24 +1,27 @@
 {
-  "name": "desafio-5-rcwebsockets",
+  "name": "enrique-ceballos",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "nodemon app.js"
-  },
+  "main": "servidor.js",
   "dependencies": {
-    "@babel/cli": "^7.17.10",
-    "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
-    "backend": "^0.0.0",
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
-    "http": "^0.0.1-security",
     "knex": "^2.1.0",
-    "morgan": "^1.10.0",
     "multer": "^1.4.4",
-    "mysql": "^2.18.1",
-    "socket.io": "^4.5.1"
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.16",
+    "socket.io": "^4.5.1",
+    "sqlite3": "^5.0.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./servidor.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2"
   }
 }
