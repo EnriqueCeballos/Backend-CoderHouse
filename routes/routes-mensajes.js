@@ -1,48 +1,57 @@
-const { Router } = require("express");
-const Api = require("../apiClassMensajes");
-const { options } = require("../dataBases/configDB.js");
-const mensajes = require("../servidor");
+import knex from "knex";
 
-const router = Router();
-const api = new Api(options.mariaDB, "mensajes");
+export default class Api {
+  constructor(options, table) {
+    this.knex = knex(options);
+    this.table = table;
+  }
+  async findAll() {
+    try {
+      const productos = await this.knex.from(this.table).select("*");
+      return productos;
+    } catch (error) {
+      throw new Error(`Error: ${error}`);
+    }
+  }
 
-const isAdmin = true;
+  async findById(id) {
+    try {
+      const producto = await this.knex
+        .from(this.table)
+        .select("*")
+        .where("id", id);
+      return producto;
+    } catch (error) {
+      throw new Error(`Error: ${error}`);
+    }
+  }
 
-function adminOrClient(req, res, next) {
-  if (!isAdmin) {
-    res.send("No tienes acceso a esta ruta");
-  } else {
-    next();
+  async create(obj) {
+    try {
+      const nuevoProducto = await this.knex(this.table).insert(obj);
+      return nuevoProducto;
+    } catch (error) {
+      throw new Error(`Error: ${error}`);
+    }
+  }
+
+  async deleteP(id) {
+    try {
+      const elementoBorrado = await this.knex
+        .from(this.table)
+        .where("id", id)
+        .del();
+      return elementoBorrado;
+    } catch (error) {
+      throw new Error(`Error: ${error}`);
+    }
+  }
+
+  async deleteAll(id) {
+    try {
+      return await this.knex.from(this.table).del();
+    } catch (error) {
+      throw new Error(`Error: ${error}`);
+    }
   }
 }
-
-router.get("/", async (req, res) => {
-  const products = await api.findAll();
-  res.json(products);
-});
-
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const product = await api.findById(id);
-  res.json(product);
-});
-
-router.post("/", adminOrClient, async (req, res) => {
-  const obj = req.body;
-  const product = await api.create(obj);
-  res.json(product);
-});
-
-router.put("/:id", adminOrClient, async (req, res) => {
-  const producto = req.body;
-  const product = await api.actualizarP(producto);
-  res.json(product);
-});
-
-router.delete("/:id", adminOrClient, async (req, res) => {
-  const { id } = req.params;
-  const product = await api.deleteP(id);
-  res.json("Producto eliminado");
-});
-
-export default router;

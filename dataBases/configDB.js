@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 
 const options = {
   mariaDB: {
@@ -18,4 +18,5 @@ const options = {
     useNullAsDefault: true,
   },
 };
-exports = options;
+
+export default options;
