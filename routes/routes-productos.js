@@ -1,12 +1,12 @@
 import { Router } from "express";
-import productos from "../servidor";
+import { productos } from "../servidor.js";
 const router = Router();
 
 class Container {
   constructor() {}
   productos = [];
 
-  guardarP(nuevoProd, file) {
+  guardarProducto(nuevoProd, file) {
     let id = 0;
     if (this.productos.length === 0) {
       id = 1;
@@ -24,16 +24,16 @@ class Container {
     this.productos.push(productoNuevo);
   }
 
-  devolverP() {
+  devolverProducto() {
     return this.productos;
   }
 
-  devolverPrId(num) {
+  devolverProductoId(num) {
     const producto = this.productos.find((p) => p.id == Number(num));
     return producto;
   }
 
-  actualizarP(id, product) {
+  actualizarProducto(id, product) {
     let index = this.productos.findIndex((p) => p.id == id);
     if (index >= 0) {
       this.productos[index] = product;
@@ -50,7 +50,7 @@ class Container {
 const containerProductos = new Container();
 
 router.get("/", (req, res) => {
-  products = containerProductos.devolverP();
+  productos = containerProductos.devolverP();
   res.render("./partials/productos.ejs", {
     title: "Agregue un producto",
     products,
@@ -59,8 +59,8 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  const product = containerProductos.devolverPrId(id);
-  product
+  const producto = containerProductos.devolverPrId(id);
+  producto
     ? res.json({ product })
     : res.json({ message: "Producto no encontrado. Id: " + id });
 });
@@ -75,8 +75,8 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const { body } = req;
-  const product = containerProductos.devolverPrId(id);
-  product
+  const producto = containerProductos.devolverPrId(id);
+  producto
     ? containerProductos.actualizarP(id, body)
     : res.json({ message: "Producto no encontrado" });
   res.json({ message: "Producto actualizado" });

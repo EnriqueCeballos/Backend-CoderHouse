@@ -22,7 +22,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
-app.use("/api/productos-test", desafioFaker);
+// app.use("/api/productos-test");
 app.use("/productos", routesProductos);
 app.set("views", "./views");
 app.set("view engine", "ejs");
@@ -33,9 +33,9 @@ app.get("/", (req, res) => {
   });
 });
 
-export default productos = [];
+export const productos = [];
 
-const mensajes = [];
+export const mensajes = [];
 
 io.on("connection", (socket) => {
   console.log("nuevo cliente conectado", socket.id);
