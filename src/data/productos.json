@@ -1,0 +1,123 @@
+[
+  {
+    "_id": {
+      "$oid": "62bda945671d66c98470bead"
+    },
+    "name": "Campera",
+    "description": "Talle 2",
+    "code": "2314",
+    "thumbanil": "http/rfafasf",
+    "price": "1200",
+    "stock": "24"
+  },
+  {
+    "_id": {
+      "$oid": "62bda945671d66c98470beae"
+    },
+    "name": "Televisor",
+    "description": "42 pulgadas",
+    "code": "4214",
+    "thumbnail": "http/reqrwq",
+    "price": "5000",
+    "stock": "10"
+  },
+  {
+    "_id": {
+      "$oid": "62bda945671d66c98470beaf"
+    },
+    "name": "telefono",
+    "description": "samsung s22",
+    "code": " 1244214",
+    "thumbnail": "http/hghdf",
+    "price": "4800",
+    "stock": "5"
+  },
+  {
+    "_id": {
+      "$oid": "62bda945671d66c98470beb0"
+    },
+    "name": "calefactor",
+    "description": "Tiro balanceado",
+    "code": "3536",
+    "thumbnail": "http/fsafa",
+    "price": "320",
+    "stock": "42"
+  },
+  {
+    "_id": {
+      "$oid": "62bdab7d671d66c98470beb1"
+    },
+    "name": "Heladera",
+    "description": "210 lts",
+    "code": "32142",
+    "thumbanil": "http/rfafasf",
+    "price": "4000",
+    "stock": "14"
+  },
+  {
+    "_id": {
+      "$oid": "62bdab7d671d66c98470beb2"
+    },
+    "name": "Sommier",
+    "description": "2 plazas",
+    "code": "3124",
+    "thumbnail": "http/reqrwq",
+    "price": "3210",
+    "stock": "10"
+  },
+  {
+    "_id": {
+      "$oid": "62bdab7d671d66c98470beb3"
+    },
+    "name": "Escritorio",
+    "description": "70x60x80",
+    "code": " 1764",
+    "thumbnail": "http/hghdf",
+    "price": "3214",
+    "stock": "5"
+  },
+  {
+    "_id": {
+      "$oid": "62bdab7d671d66c98470beb4"
+    },
+    "name": "Ventilador",
+    "description": "4 velocidades",
+    "code": "3214",
+    "thumbnail": "http/fsafa",
+    "price": "210",
+    "stock": "42"
+  },
+  {
+    "_id": {
+      "$oid": "62bdac26671d66c98470beb5"
+    },
+    "name": "Teclado",
+    "description": "Mecanico RGB",
+    "code": "2313214",
+    "thumbanil": "http/rfafasf",
+    "price": "3400",
+    "stock": "26"
+  },
+  {
+    "_id": {
+      "$oid": "62bdac26671d66c98470beb6"
+    },
+    "name": "Monitor",
+    "description": "24 pulgadas",
+    "code": "79689",
+    "thumbnail": "http/reqrwq",
+    "price": "2130",
+    "stock": "10"
+  },
+  {
+    "_id": {
+      "$oid": "62bdad2c671d66c98470beb7"
+    },
+    "name": "Pantalon",
+    "description": "Talle 42",
+    "code": "6534",
+    "thumbnail": "http/momgfsdoif",
+    "price": "965",
+    "stock": "16"
+  }
+]
