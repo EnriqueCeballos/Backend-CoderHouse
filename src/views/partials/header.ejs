@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="../../public/css/styles.css" /> -->
+    <!--Cambiar title segun la sección-->
+    <title>INFORMES</title>
+  </head>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                onclick="location.href='/'"
+                >HOME</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='/productos'"
+                >PRODUCTOS</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='/registro'"
+                >NOSOTROS</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">CONTACTO</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --back-color: #000;
+      --main-color: #1414;
+      --second-color: #fff;
+      --three-color: #1212;
+    }
+
+    /* NAV */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: var(--back-color);
+      height: 100px;
+    }
+    #menuPrincipal,
+    #menuPrincipal li {
+      flex-direction: row;
+      display: flex;
+      justify-content: space-around;
+    }
+    #menuPrincipal li {
+      padding: 0 20px;
+      color: var(--second-color);
+    }
+    .sectionSignUp {
+      display: flex;
+      flex-direction: column;
+    }
+    .btnSignUp {
+      background: blueviolet;
+      margin: 5px 5px;
+      border-radius: 0.5rem;
+      border: none;
+      color: white;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    .title {
+      display: flex;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--back-color);
+      margin-top: 2rem;
+    }
+    .productSection {
+      background-color: var(--second-color);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    /* FORM */
+    .formularioAgregar {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 10px 40px;
+    }
+    .formularioAgregar input {
+      border: 1px solid var(--main-color);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .button.is-primary {
+      width: 200px;
+    }
+    .center,
+    .sectionMessages {
+      display: grid;
+      place-content: center;
+      margin-top: 1rem;
+      background-color: var(--three-color);
+    }
+    .sectionMessages {
+      padding-bottom: 20px;
+    }
+    .sectionMessages input {
+      margin: 10px;
+    }
+    table {
+      width: 100vw;
+      border: 1px solid black;
+      margin: 5px;
+    }
+    th {
+      color: var(--back-color);
+    }
+
+    .filas {
+      border: 1px solid black;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .columnas {
+      border: 1px solid black;
+    }
+
+    label {
+      font-size: 1rem;
+      color: white;
+    }
+
+    #btnAddProduct,
+    #btnMensajes {
+      background-color: var(--main-color);
+      border-radius: 0.5rem;
+      border: none;
+      margin-top: 0.5rem;
+      color: white;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    #btnMensajes {
+      padding: 5px;
+    }
+
+    #btnAddProduct:hover,
+    #btnMensajes:hover {
+      transform: scale(1.1);
+      background-color: var(--back-color);
+      color: var(--second-color);
+    }
+
+    .nuevosMensajes {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      border-radius: 0.2rem;
+    }
+
+    .botonMensajes {
+      height: 5vh;
+      width: 20vw;
+    }
+
+    .mail {
+      color: aqua;
+    }
+
+    .fecha {
+      color: red;
+    }
+
+    .mensaje {
+      font-weight: bold;
+    }
+  </style>
+</html>

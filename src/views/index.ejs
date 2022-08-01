@@ -1,0 +1,30 @@
+<%- include ("./partials/header.ejs")%>
+
+<body>
+  <div class="container-fluid container-bienvenido">
+    <div class="row section-bienvenido">
+      <div class="col-m-12 d-flex justify-content-between">
+        <h1>
+          Bienvenido <span class="ms-1 name-bienvenido"><%= nombre%></span>
+        </h1>
+
+        <button
+          class="btn btn-danger mt-2 btn-salir"
+          id="btnLogout"
+          onclick="location.href='/logout'"
+        >
+          Salir
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center mt-5">
+    <%-include('./partials/productos.ejs') %>
+    <!--Mostrar la lista de productos con products.ejs-->
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <%- include('./partials/formProductos.ejs')%><!--incluir formulario ingreso de productos -->
+      </div>
+    </div>
+  </div>
+</body>
